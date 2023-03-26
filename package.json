@@ -1,15 +1,18 @@
 {
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-native-fontawesome": "^0.3.0",
     "expo": "^48.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.71.3",
+    "react-native": "0.71.4",
+    "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@types/react": "~18.0.24",
-    "@types/react-native": "~0.70.6",
     "typescript": "^4.6.3"
   },
   "scripts": {
