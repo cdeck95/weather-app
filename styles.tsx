@@ -13,9 +13,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: "center",
         justifyContent: "center",
-        position: "absolute",
-        top: 50,
-        left: 25,
         height: 100
     },
     locationInput: {
