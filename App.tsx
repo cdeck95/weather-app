@@ -44,9 +44,11 @@ export default function App() {
     return null;
   }
 
-  if(location != "") {
-    setLocationConfirmed(true);
-  }
+  // if(location != "") {
+  //   setLocationConfirmed(true);
+  // } else {
+  //   setLocationConfirmed(false)
+  // }
 
   
 // const HideKeyboard = ({ children }) => (
@@ -55,20 +57,58 @@ export default function App() {
 //   </TouchableWithoutFeedback>
 // );
 
+  const celsiusToFahrenheit = (celcius: number) => 1.8 * celcius + 32;
+
+
+
   function handleChange(newText: string) {
     console.log(newText)
-    const url = `https://api.openweathermap.org/data/2.5/weather?q={${newText}}&appid={${API_KEY}}`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${newText}&appid=${API_KEY}&units=imperial`;
     console.log(url);
     fetch(url)
       .then(response => response.json())
       .then(json => {
-        ;
-        console.log(json);
+        // "humidity": 69, "temp": 280.13, "weather": [{"description": "clear sky", "icon": "01n", "id": 800, "main": "Clear"}], "wind": {"deg": 180, "speed": 3.6}}
+        if(json["cod"] == 200) {
+          console.log(json);
+          const stats = json["main"];
+          setTemp(stats["temp"]);
+          setHumidity(stats["humidity"]);
+          const weather = json["weather"];
+          const main = weather[0]
+          setWeatherType(main["main"]);
+          const wind = json["wind"];
+          setWindSpeed(wind["speed"]);
+          setLocationConfirmed(true);
+        } else {
+          setLocation("");
+          setTemp("0");
+          setWeatherType("Loading...");
+          setHumidity("N/A");
+          setWindSpeed("N/A");
+          setLocationConfirmed(false);
+        }
+        
       })
       .catch(error => {
         console.error(error);
       });
     
+  }
+
+  function RenderWeatherImage () {
+    switch(weatherType) {
+      case 'Clear':
+        return <Image source={clear} style={styles.weatherImage}/>
+      case 'Clouds':
+        return <Image source={cloud} style={styles.weatherImage}/>
+      case 'Snow':
+        return <Image source={snow} style={styles.weatherImage}/>
+      case 'Extreme ':
+        return <Image source={thunderstorm} style={styles.weatherImage}/>
+      default:
+        return <Image source={clear} style={styles.weatherImage}/>
+    }
   }
 
   return (
@@ -92,7 +132,20 @@ export default function App() {
       {locationConfirmed? 
       <View style={styles.weather}>
         <View style={styles.weatherImage}>
-          <Image source={clear} style={styles.weatherImage}/>
+          {(() => {
+           switch(weatherType) {
+            case 'Clear':
+              return <Image source={clear} style={styles.weatherImage}/>
+            case 'Clouds':
+              return <Image source={cloud} style={styles.weatherImage}/>
+            case 'Snow':
+              return <Image source={snow} style={styles.weatherImage}/>
+            case 'Extreme ':
+              return <Image source={thunderstorm} style={styles.weatherImage}/>
+            default:
+              return <Image source={clear} style={styles.weatherImage}/>
+          }
+        })()}
         </View>
         <Text style={{ fontFamily: 'BebasNeue_400Regular', fontSize: 40, alignContent: "center", justifyContent: "center", padding: 5, marginTop: 35}}>{temp} &deg;F</Text>
         <Text style={{ fontFamily: 'BebasNeue_400Regular', fontSize: 40, alignContent: "center", justifyContent: "center", padding: 5, margin: 5}}>{weatherType}</Text>

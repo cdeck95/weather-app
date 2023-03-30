@@ -34,10 +34,7 @@ const styles = StyleSheet.create({
         
     },
     notFound: {
-        width: "100%",
-        height: "50%",
         justifyContent: "center",
-        textAlign: "center",
         alignItems: "center"
     }, 
     notFoundText: {
@@ -57,6 +54,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: undefined,
         aspectRatio: 1, 
+        resizeMode: 'contain',
       }, row: {
         display: "flex",
         flexDirection: "row",
