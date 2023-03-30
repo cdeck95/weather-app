@@ -28,8 +28,7 @@ export default function App() {
   const [windSpeed, setWindSpeed] = useState('N/A');
   const [humidity, setHumidity] = useState('N/A');
   const API_KEY = process.env.REACT_APP_APIKEY!
-  console.log(API_KEY)
-
+  
   let [fontsLoaded] = useFonts({
     BebasNeue_400Regular,
   });
