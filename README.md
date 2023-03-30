@@ -11,7 +11,9 @@ npx expo start
 
 # iOS Demo
 
-
+https://user-images.githubusercontent.com/14206982/228719058-5ba14d3f-70ac-46e0-ac75-aad4936a15f3.mp4
 
 # Android Demo
+
+https://user-images.githubusercontent.com/14206982/228719794-6de26c4b-b8bb-4e76-b53c-52ed7824877e.mp4
 
